@@ -17,4 +17,11 @@ public class Solution {
         }
         return sum;
     }
+
+    public int[] reverse(long n) {
+        char[] chars = String.valueOf(n).toCharArray();
+        return IntStream.range(0, chars.length)
+                .map(i -> Character.getNumericValue(chars[chars.length - 1 - i]))
+                .toArray();
+    }
 }
