@@ -23,4 +23,21 @@ class SolutionTest {
         // when
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("자릿수 더하기")
+    @ParameterizedTest
+    @CsvSource({
+            "123,6",
+            "987,24"
+    })
+    void sumDigitsTest(int n, int expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        int result = solution.sumDigits(n);
+
+        // when
+        assertThat(result).isEqualTo(expected);
+    }
 }

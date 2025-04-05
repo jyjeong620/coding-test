@@ -1,5 +1,7 @@
 package yujin.week1;
 
+import java.util.Arrays;
+
 public class Solution {
     public int sumOfDivisors(int n) {
         int result = 0;
@@ -9,5 +11,14 @@ public class Solution {
             }
         }
         return result;
+    }
+
+    public int sumDigits(int n) {
+        String[] numbers = String.valueOf(n)
+                .split("");
+
+        return Arrays.stream(numbers)
+                .mapToInt(Integer::valueOf)
+                .sum();
     }
 }
