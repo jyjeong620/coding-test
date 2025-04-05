@@ -21,4 +21,14 @@ public class Solution {
                 .mapToInt(Integer::valueOf)
                 .sum();
     }
+
+    public int[] reverseNumberToArray(long n) {
+        int[] numbers = new int[String.valueOf(n).length()];
+        int index = 0;
+        while (n > 0) {
+            numbers[index++] = (int) (n % 10);
+            n = n / 10;
+        }
+        return numbers;
+    }
 }
