@@ -54,9 +54,9 @@ class SolutionTest {
     @CsvSource({
             "2,5,'2,4,6,8,10'",
             "4,3,'4,8,12'",
-            "-4,2,'-4,-8"
+            "-4,2,'-4,-8'"
     })
-    void numberSequence(long number, int size, String expectedAsString) {
+    void numberSequence(int x, int n, String expectedAsString) {
         // given
         Solution solution = new Solution();
 
@@ -65,7 +65,7 @@ class SolutionTest {
                 .toArray();
 
         // when
-        long[] result = solution.numberSequence(number, size);
+        long[] result = solution.numberSequence(x, n);
 
         // then
         assertThat(result).isEqualTo(expected);

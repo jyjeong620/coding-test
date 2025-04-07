@@ -11,7 +11,11 @@ public class Solution {
         return Arrays.stream(arr).average().getAsDouble();
     }
 
-    public long[] numberSequence(long number, int size) {
-        return null;
+    public long[] numberSequence(int x, int n) {
+        long[] numbers = new long[n];
+        for(int i = 0; i < n; i++) {
+            numbers[i] = (long) x * (i + 1);
+        }
+        return numbers;
     }
 }
