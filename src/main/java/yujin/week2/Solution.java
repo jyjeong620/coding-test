@@ -1,8 +1,8 @@
 package yujin.week2;
 
 public class Solution {
-    public String oddOrEven(int number) {
-        return "";
+    public String oddOrEven(int num) {
+        return num % 2 == 0 ? "Even" : "Odd";
     }
 
     public double average(int[] numbers) {
