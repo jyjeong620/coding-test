@@ -33,6 +33,15 @@ public class Solution {
                 .mapToInt(Integer::intValue)
                 .toArray();
     }
+
+    public double average(int[] arr) {
+        if(arr == null || arr.length == 0) {
+            return 0;
+        }
+        return Arrays.stream(arr)
+                .average()
+                .orElseGet(() -> 0.0);
+    }
 }
 
 class Privacy {
