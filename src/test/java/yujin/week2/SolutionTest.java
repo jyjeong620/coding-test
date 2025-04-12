@@ -122,6 +122,37 @@ class SolutionTest {
                 )
         );
     }
+
+    @DisplayName("카드 뭉치")
+    @ParameterizedTest
+    @MethodSource("cardBundleTestCases")
+    void cardBundle(String[] cards1, String[] cards2, String[] goal, String expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        String result = solution.cardBundle(cards1, cards2, goal);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> cardBundleTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new String[]{"i", "drink", "water"},
+                        new String[]{"want", "to"},
+                        new String[]{"i", "want", "to", "drink", "water"},
+                        "Yes"
+                ),
+                Arguments.of(
+                        new String[]{"i", "water", "drink"},
+                        new String[]{"want", "to"},
+                        new String[]{"i", "want", "to", "drink", "water"},
+                        "No"
+                )
+        );
+    }
 }
 
 
