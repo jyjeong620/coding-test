@@ -28,7 +28,7 @@ class SolutionTest {
     @ParameterizedTest
     @CsvSource({
             "1234,1234",
-            "-1234,1234"
+            "-1234,-1234"
     })
     void parseInt(String s, long expected) {
         // given

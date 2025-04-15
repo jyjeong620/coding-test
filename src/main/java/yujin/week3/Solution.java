@@ -11,7 +11,7 @@ public class Solution {
     }
 
     public int parseInt(String s) {
-        return 0;
+        return Integer.parseInt(s);
     }
 
     public long sumBetween(int a, int b) {
