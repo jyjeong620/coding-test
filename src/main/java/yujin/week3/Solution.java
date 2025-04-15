@@ -2,7 +2,12 @@ package yujin.week3;
 
 public class Solution {
     public int findNumberWithRemainderOne(int n) {
-        return 0;
+        for (int i = 2; i < n; i++) {
+            if (n % i == 1) {
+                return i;
+            }
+        }
+        return n;
     }
 
     public int parseInt(String s) {
