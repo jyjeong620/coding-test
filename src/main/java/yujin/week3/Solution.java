@@ -1,5 +1,7 @@
 package yujin.week3;
 
+import java.util.stream.LongStream;
+
 public class Solution {
     public int findNumberWithRemainderOne(int n) {
         for (int i = 2; i < n; i++) {
@@ -15,7 +17,8 @@ public class Solution {
     }
 
     public long sumBetween(int a, int b) {
-        long answer = 0;
-        return answer;
+        int min = Math.min(a, b);
+        int max = Math.max(a, b);
+        return LongStream.rangeClosed(min, max).sum();
     }
 }
