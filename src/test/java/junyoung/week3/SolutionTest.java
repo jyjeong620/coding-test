@@ -50,4 +50,25 @@ class SolutionTest {
                 {new String[]{"i", "water"}, new String[]{"want", "to"}, new String[]{"i", "want", "to", "drink", "water"}, "No"},
         };
     }
+
+    @DisplayName("같은 숫자는 싫어")
+    @ParameterizedTest
+    @MethodSource("hateNumberProvider")
+    void hateSameNumbers(int[] arr, int[] expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        int[] actual = solution.hateSameNumbers(arr);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Object[][] hateNumberProvider() {
+        return new Object[][]{
+                {new int[]{1,1,3,3,0,1,1}, new int[]{1,3,0,1}},
+                {new int[]{4,4,4,3,3}, new int[]{4,3}}
+        };
+    }
 }

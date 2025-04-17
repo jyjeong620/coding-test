@@ -1,5 +1,7 @@
 package junyoung.week3;
 
+import java.util.ArrayList;
+
 public class Solution {
     public String recommendId(String newId) {
         //1단계 new_id의 모든 대문자를 대응되는 소문자로 치환합니다.
@@ -18,7 +20,7 @@ public class Solution {
         //6단계 new_id의 길이가 16자 이상이면, new_id의 첫 15개의 문자를 제외한 나머지 문자들을 모두 제거합니다.
         //        만약 제거 후 마침표(.)가 new_id의 끝에 위치한다면 끝에 위치한 마침표(.) 문자를 제거합니다.
         String sixStep = fiveStep;
-        if(sixStep.length() >= 16) {
+        if (sixStep.length() >= 16) {
             sixStep = sixStep.substring(0, 15);
         }
         if (sixStep.endsWith(".")) {
@@ -48,5 +50,16 @@ public class Solution {
             }
         }
         return "Yes";
+    }
+
+    public int[] hateSameNumbers(int[] arr) {
+        ArrayList<Integer> number = new ArrayList<>();
+        number.add(arr[0]);
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] != arr[i - 1]) {
+                number.add(arr[i]);
+            }
+        }
+        return number.stream().mapToInt(i -> i).toArray();
     }
 }
