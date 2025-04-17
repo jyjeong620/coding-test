@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SolutionTest {
@@ -54,6 +56,27 @@ class SolutionTest {
 
         // when
         long result = solution.sumBetween(a, b);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("가장 가까운 같은 글자")
+    @ParameterizedTest
+    @CsvSource({
+            "banana, '-1,-1,-1,2,2,2'",
+            "foobar, '-1,-1,1,-1,-1,-1'"
+    })
+    void nearestSameCharacter(String s, String expectedAsString) {
+        // given
+        Solution solution = new Solution();
+
+        int[] expected = Arrays.stream(expectedAsString.split(","))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        // when
+        int[] result = solution.nearestSameCharacter(s);
 
         // then
         assertThat(result).isEqualTo(expected);
