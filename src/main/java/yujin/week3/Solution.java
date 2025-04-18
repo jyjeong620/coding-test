@@ -1,5 +1,6 @@
 package yujin.week3;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.LongStream;
@@ -37,5 +38,11 @@ public class Solution {
             indexMap.put(value, i);
         }
         return answer;
+    }
+
+    public int ponketmon(int[] nums) {
+        int maxCount = nums.length / 2;
+        long poketmonCategoryCount = Arrays.stream(nums).distinct().count();
+        return Math.min((int) poketmonCategoryCount, maxCount);
     }
 }

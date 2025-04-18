@@ -81,4 +81,25 @@ class SolutionTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("폰켓몬")
+    @ParameterizedTest
+    @CsvSource({
+            "'3,1,2,3', 2",
+            "'3,3,3,2,2,4', 3",
+            "'3,3,3,2,2,2', 2"
+    })
+    void ponketmon(String numAsString, int expected) {
+        // given
+        Solution solution = new Solution();
+        int[] nums = Arrays.stream(numAsString.split(","))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        // when
+        int result = solution.ponketmon(nums);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
 }
