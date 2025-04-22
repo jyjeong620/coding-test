@@ -25,4 +25,21 @@ class SolutionTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("기사단원의 무기")
+    @ParameterizedTest
+    @CsvSource({
+            "5,3,2,10",
+            "10,3,2,21"
+    })
+    void weaponOfTheKnight(int number, int limit, int power, int expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        int result = solution.weaponOfTheKnight(number, limit, power);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
 }
