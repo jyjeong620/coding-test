@@ -42,4 +42,21 @@ class SolutionTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("콜라 문제")
+    @ParameterizedTest
+    @CsvSource({
+            "2,1,20,19",
+            "3,1,20,9"
+    })
+    void cokeProblem(int a, int b, int n, int expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        int result = solution.cokeProblem(a, b, n);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
 }
