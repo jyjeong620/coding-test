@@ -1,5 +1,11 @@
 package junyoung.week4;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Week4Solution {
 
     public String findMrKim(String[] seoul) {
@@ -34,7 +40,7 @@ public class Week4Solution {
         return count;
     }
 
-    public int[] findMaxIndices(int a, int b, int c) {
+    private int[] findMaxIndices(int a, int b, int c) {
         int[] arr = {a, b, c};
         int max = Math.max(Math.max(a, b), c);
 
@@ -56,4 +62,29 @@ public class Week4Solution {
 
         return result;
     }
+
+    // timeout 발생
+    public String findFriend(String X, String Y) {
+        List<String> splitX = Arrays.stream(X.split("")).toList();
+        List<String> splitY = Arrays.stream(Y.split("")).collect(Collectors.toList());
+
+        List<String> result = new ArrayList<>();
+        splitX.stream()
+                .filter(splitY::contains)
+                .forEach(x -> {
+                    result.add(x);
+                    splitY.remove(x);
+                });
+        if (result.isEmpty()) {
+            return "-1";
+        }
+        StringBuilder sb = new StringBuilder();
+        result.stream()
+                .sorted(Comparator.comparing(Integer::parseInt, Comparator.reverseOrder()))
+                .forEach(sb::append);
+        int i = Integer.parseInt(sb.toString());
+
+        return String.valueOf(i);
+    }
+
 }
