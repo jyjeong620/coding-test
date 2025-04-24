@@ -87,4 +87,40 @@ public class Week4Solution {
         return String.valueOf(i);
     }
 
+    public String refactorFindFriend(String X, String Y) {
+        int[] countX = new int[10];
+        int[] countY = new int[10];
+
+        for (char c : X.toCharArray()) {
+            countX[c - '0']++;
+        }
+
+        for (char c : Y.toCharArray()) {
+            countY[c - '0']++;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        boolean hasCommon = false;
+
+        for (int i = 9; i >= 0; i--) {
+            int commonCount = Math.min(countX[i], countY[i]);
+            if (commonCount > 0) {
+                hasCommon = true;
+                for (int j = 0; j < commonCount; j++) {
+                    sb.append(i);
+                }
+            }
+        }
+
+        if (!hasCommon) {
+            return "-1";
+        }
+
+        String result = sb.toString();
+        if (result.charAt(0) == '0') {
+            return "0";
+        }
+
+        return result;
+    }
 }
