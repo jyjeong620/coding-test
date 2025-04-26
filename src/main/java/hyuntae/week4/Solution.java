@@ -1,4 +1,4 @@
-package hyuntae.week3;
+package hyuntae.week4;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
