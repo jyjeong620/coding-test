@@ -3,10 +3,12 @@ package yujin.week5;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SolutionTest {
@@ -37,5 +39,21 @@ class SolutionTest {
                         new int[]{0, 0, 0, 0, 20, 40, 70, 70, 150, 300}
                 )
         );
+    }
+
+    @DisplayName("부족한 금액 계산하기")
+    @ParameterizedTest
+    @CsvSource({
+        "3,20,4,10"
+    })
+    void calculateAmount(int price, int money, int count, long expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        long result = solution.calculateAmount(price, money, count);
+
+        // then
+        assertThat(result).isEqualTo(expected);
     }
 }
