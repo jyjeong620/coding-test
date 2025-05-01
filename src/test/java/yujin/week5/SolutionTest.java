@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SolutionTest {
@@ -44,7 +43,7 @@ class SolutionTest {
     @DisplayName("부족한 금액 계산하기")
     @ParameterizedTest
     @CsvSource({
-        "3,20,4,10"
+            "3,20,4,10"
     })
     void calculateAmount(int price, int money, int count, long expected) {
         // given
@@ -55,5 +54,36 @@ class SolutionTest {
 
         // then
         assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("삼총사")
+    @ParameterizedTest
+    @MethodSource("trioTestCases")
+    void trio(int[] number, int expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        int result = solution.trio(number);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> trioTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new int[]{-2, 3, 0, 2, -5},
+                        2
+                ),
+                Arguments.of(
+                        new int[]{-3, -2, -1, 0, 1, 2, 3},
+                        5
+                ),
+                Arguments.of(
+                        new int[]{-1, 1, -1, 1},
+                        0
+                )
+        );
     }
 }
