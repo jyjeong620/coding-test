@@ -49,4 +49,21 @@ class Week5SolutionTest {
                 Arguments.of(new int[]{1, 3, 2, 1, 2, 1, 3, 1, 2}, 0)
         );
     }
+
+    @DisplayName("콜라츠 추측")
+    @ParameterizedTest
+    @CsvSource({
+            "6, 8",
+            "16, 4",
+            "626331, -1",
+            "1, 0"
+    })
+    void collatzConjectureTest(int num, int expected) {
+        // given
+        Week5Solution solution = new Week5Solution();
+        // when
+        int actual = solution.collatzConjecture(num);
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }

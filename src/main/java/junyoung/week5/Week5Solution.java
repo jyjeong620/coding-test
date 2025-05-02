@@ -47,5 +47,25 @@ public class Week5Solution {
         }
         return makeCount;
     }
+
+    public int collatzConjecture(int num) {
+        int count = 0;
+        long number = num;
+
+        while (number != 1) {
+            if (number % 2 == 0) {
+                number = number / 2;
+            } else {
+                number = 3 * number + 1;
+            }
+            count++;
+        }
+
+        if(count >= 500) {
+            return -1;
+        }
+
+        return count;
+    }
 }
 
