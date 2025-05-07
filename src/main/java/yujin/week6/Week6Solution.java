@@ -1,5 +1,7 @@
 package yujin.week6;
 
+import java.util.Arrays;
+
 public class Week6Solution {
     public String caesarPassword(String s, int n) {
         StringBuilder answer = new StringBuilder();
@@ -15,5 +17,21 @@ public class Week6Solution {
             }
         }
         return answer.toString();
+    }
+
+    public int budget(int[] d, int budget) {
+        int answer = 0;
+        int totalD = 0;
+        Arrays.sort(d);
+        for (int i : d) {
+            if (totalD + i > budget) {
+                break;
+            } else {
+                answer++;
+                totalD += i;
+            }
+        }
+
+        return answer;
     }
 }
