@@ -50,4 +50,22 @@ class Week6JeongjySolutionTest {
         // then
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("수박수박수?")
+    @ParameterizedTest
+    @CsvSource({
+            "2, 수박",
+            "3, 수박수",
+            "4, 수박수박"
+    })
+    void clapOrWaterMelonTest(int n, String expected) {
+        // given
+        Week6JeongjySolution solution = new Week6JeongjySolution();
+
+        // when
+        String actual = solution.clapOrWaterMelon(n);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }

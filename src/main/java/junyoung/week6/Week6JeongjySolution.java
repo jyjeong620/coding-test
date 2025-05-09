@@ -3,6 +3,7 @@ package junyoung.week6;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.stream.IntStream;
 
 public class Week6JeongjySolution {
 
@@ -57,5 +58,12 @@ public class Week6JeongjySolution {
         }
 
         return answer;
+    }
+
+    public String clapOrWaterMelon(int n) {
+        StringBuilder sb = new StringBuilder();
+        IntStream.range(0, n)
+                .forEach(i -> sb.append(i % 2 == 0 ? "수" : "박"));
+        return sb.toString();
     }
 }
