@@ -25,4 +25,22 @@ class Week7JeongjySolutionTest {
         // then
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("크기가 작은 부분 문자열")
+    @ParameterizedTest
+    @CsvSource({
+            "3141592,271,2",
+            "500220839878, 7, 8",
+            "10203, 15, 3"
+    })
+    void smallerSubstringTest(String t, String p, int expected) {
+        // given
+        Week7JeongjySolution solution = new Week7JeongjySolution();
+
+        // when
+        int actual = solution.smallerSubstring(t, p);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }

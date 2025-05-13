@@ -12,4 +12,17 @@ public class Week7JeongjySolution {
 
         return week[day % 7];
     }
+
+    public int smallerSubstring(String t, String p) {
+        int count = 0;
+        int targetLength = p.length();
+
+        for (int i = 0; i <= t.length() - targetLength; i++) {
+            int compareResult = t.substring(i, i + targetLength).compareTo(p);
+            if (compareResult <= 0) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
