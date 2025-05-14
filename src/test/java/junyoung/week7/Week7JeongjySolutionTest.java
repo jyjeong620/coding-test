@@ -43,4 +43,21 @@ class Week7JeongjySolutionTest {
         // then
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("가운데글자가져오기")
+    @ParameterizedTest
+    @CsvSource({
+            "abcde, c",
+            "qwer, we"
+    })
+    void getMiddleStringTest(String s,  String expected) {
+        // given
+        Week7JeongjySolution solution = new Week7JeongjySolution();
+
+        // when
+        String actual = solution.getMiddleString(s);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }
