@@ -38,4 +38,31 @@ class Week7SolutionTest {
                 )
         );
     }
+
+    @DisplayName("모의고사")
+    @ParameterizedTest
+    @MethodSource("mockTestTestCases")
+    void mockTest(int[] answers, int[] expected) {
+        // given
+        Week7Solution solution = new Week7Solution();
+
+        // when
+        int[] result = solution.mockTest(answers);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> mockTestTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new int[]{1, 2, 3, 4, 5},
+                        new int[]{1}
+                ),
+                Arguments.of(
+                        new int[]{1, 3, 2, 4, 2},
+                        new int[]{1, 2, 3}
+                )
+        );
+    }
 }
