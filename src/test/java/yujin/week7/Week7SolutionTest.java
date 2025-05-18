@@ -65,4 +65,33 @@ class Week7SolutionTest {
                 )
         );
     }
+
+    @DisplayName("과일 장수")
+    @ParameterizedTest
+    @MethodSource("fruitSellerTestCases")
+    void fruitSeller(int k, int m, int[] score, int expected) {
+        // given
+        Week7Solution solution = new Week7Solution();
+
+        // when
+        int result = solution.fruitSeller(k, m, score);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> fruitSellerTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        3, 4,
+                        new int[]{1, 2, 3, 1, 2, 3, 1},
+                        8
+                ),
+                Arguments.of(
+                        4, 3,
+                        new int[]{4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2},
+                        33
+                )
+        );
+    }
 }

@@ -1,6 +1,8 @@
 package yujin.week7;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Week7Solution {
@@ -51,5 +53,23 @@ public class Week7Solution {
         }
 
         return answer.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    public int fruitSeller(int k, int m, int[] score) {
+        if (score.length < m) {
+            return 0;
+        }
+
+        Integer[] boxedScore = Arrays.stream(score).boxed().toArray(Integer[]::new);
+        Arrays.sort(boxedScore, Collections.reverseOrder());
+
+        int i = m - 1;
+        int price = 0;
+        while (i < score.length) {
+            price += boxedScore[i] * m;
+            i += m;
+        }
+
+        return price;
     }
 }
