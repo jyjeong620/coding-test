@@ -48,4 +48,33 @@ class Week8SolutionTest {
                 )
         );
     }
+
+    @DisplayName("실패율")
+    @ParameterizedTest
+    @MethodSource("failureRateTestCases")
+    void failureRate(int n, int[] stages, int[] expected) {
+        // given
+        Week8Solution solution = new Week8Solution();
+
+        // when
+        int[] result = solution.failureRate(n, stages);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> failureRateTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        5,
+                        new int[]{2, 1, 2, 6, 2, 4, 3, 3},
+                        new int[]{3, 4, 2, 1, 5}
+                ),
+                Arguments.of(
+                        4,
+                        new int[]{4, 4, 4, 4, 4},
+                        new int[]{4, 1, 2, 3}
+                )
+        );
+    }
 }

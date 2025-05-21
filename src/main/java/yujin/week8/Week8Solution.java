@@ -1,5 +1,10 @@
 package yujin.week8;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 public class Week8Solution {
     public int overPainting(int n, int m, int[] section) {
         int answer = 1;
@@ -11,5 +16,39 @@ public class Week8Solution {
             }
         }
         return answer;
+    }
+
+    public int[] failureRate(int n, int[] stages) {
+        List<StageFailure> stageFailures = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            int stage = i;
+            long totalCount = Arrays.stream(stages).filter(num -> num >= stage).count();
+            long count = Arrays.stream(stages).filter(num -> num == stage).count();
+            double failure = totalCount == 0 ? 0 : 1.0 * count / totalCount;
+            stageFailures.add(new StageFailure(stage, failure));
+        }
+
+        return stageFailures.stream()
+                .sorted(Comparator.comparingDouble(StageFailure::getFailureRate).reversed().thenComparingInt(StageFailure::getStage))
+                .mapToInt(StageFailure::getStage)
+                .toArray();
+    }
+
+    public class StageFailure {
+        private final int stage;
+        private final double failureRate;
+
+        public StageFailure(int stage, double failureRate) {
+            this.stage = stage;
+            this.failureRate = failureRate;
+        }
+
+        public double getFailureRate() {
+            return failureRate;
+        }
+
+        public int getStage() {
+            return stage;
+        }
     }
 }
