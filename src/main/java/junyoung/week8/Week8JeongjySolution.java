@@ -1,7 +1,9 @@
 package junyoung.week8;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Week8JeongjySolution {
     public int[] keyboard(String[] keymaps, String[] targets) {
@@ -70,5 +72,31 @@ public class Week8JeongjySolution {
         }
 
         return answer;
+    }
+
+    public int makePrimeNumber(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length - 2; i++) {
+            for (int j = i + 1; j < nums.length - 1; j++) {
+                for (int k = j + 1; k < nums.length; k++) {
+                    if (isPrime(nums[i] + nums[j] + nums[k])) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    private boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

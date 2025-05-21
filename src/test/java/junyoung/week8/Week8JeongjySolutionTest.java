@@ -8,6 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class Week8JeongjySolutionTest {
 
     @DisplayName("대충만든 자판")
@@ -21,16 +23,38 @@ class Week8JeongjySolutionTest {
         int[] actual = solution.keyboard(keymaps, targets);
 
         // then
-        Assertions.assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> keyboardProvider() {
         return Stream.of(
                 Arguments.of(new String[]{"ABACD", "BCEFD"}, new String[]{"ABCD", "AABB"}, new int[]{9, 4}),
                 Arguments.of(new String[]{"AA"}, new String[]{"B"}, new int[]{-1}),
-                Arguments.of(new String[]{"AGZ", "BSSS"}, new String[]{"ASA","BGZ"}, new int[]{4,6}),
+                Arguments.of(new String[]{"AGZ", "BSSS"}, new String[]{"ASA", "BGZ"}, new int[]{4, 6}),
                 Arguments.of(new String[]{"ABCDE"}, new String[]{"FGHIJ"}, new int[]{-1}),
-                Arguments.of(new String[]{"ABACD", "BCEFD"}, new String[]{"ABCD","DG", "AABB"}, new int[]{9, -1, 4})
+                Arguments.of(new String[]{"ABACD", "BCEFD"}, new String[]{"ABCD", "DG", "AABB"}, new int[]{9, -1, 4})
+        );
+    }
+
+    @DisplayName("소수만들기")
+    @ParameterizedTest
+    @MethodSource("makePrimeNumberProvider")
+    void makePrimeNumberTest(int[] nums, int expected) {
+        // given
+        Week8JeongjySolution solution = new Week8JeongjySolution();
+
+        // when
+        int actual = solution.makePrimeNumber(nums);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> makePrimeNumberProvider() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 2, 3, 4}, 1),
+                Arguments.of(new int[]{1, 2, 7, 6, 4}, 4)
+
         );
     }
 }
