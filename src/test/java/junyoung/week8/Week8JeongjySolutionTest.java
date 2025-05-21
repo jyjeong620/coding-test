@@ -57,4 +57,26 @@ class Week8JeongjySolutionTest {
 
         );
     }
+
+    @DisplayName("없는숫자더하기")
+    @ParameterizedTest
+    @MethodSource("plusEmptyNumberProvider")
+    void plusEmptyNumber(int[] numbers, int expected) {
+        // given
+        Week8JeongjySolution solution = new Week8JeongjySolution();
+
+        // when
+        int actual = solution.plusEmptyNumber(numbers);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+
+    }
+
+    private static Stream<Arguments> plusEmptyNumberProvider() {
+        return Stream.of(
+                Arguments.of(new int[]{1,2,3,4,6,7,8,0}, 14),
+                Arguments.of(new int[]{5,8,4,0,6,7,9}, 6)
+        );
+    }
 }

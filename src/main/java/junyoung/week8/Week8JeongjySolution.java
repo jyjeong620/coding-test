@@ -99,4 +99,16 @@ public class Week8JeongjySolution {
         }
         return true;
     }
+
+    public int plusEmptyNumber(int[] numbers) {
+        Set<Integer> numberSet = new HashSet<>(Set.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 0));
+        for (int num : numbers) {
+            numberSet.remove(num);
+        }
+        int answer = 0;
+        for (Integer number : numberSet) {
+            answer += number;
+        }
+        return answer;
+    }
 }
