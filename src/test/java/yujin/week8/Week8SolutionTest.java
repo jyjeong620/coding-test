@@ -77,4 +77,33 @@ class Week8SolutionTest {
                 )
         );
     }
+
+    @DisplayName("지폐 접기")
+    @ParameterizedTest
+    @MethodSource("billFoldingTestCases")
+    void billFolding(int[] wallet, int[] bill, int expected) {
+        // given
+        Week8Solution solution = new Week8Solution();
+
+        // when
+        int result = solution.billFolding(wallet, bill);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> billFoldingTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new int[]{30, 15},
+                        new int[]{26, 17},
+                        1
+                ),
+                Arguments.of(
+                        new int[]{50, 50},
+                        new int[]{100, 241},
+                        4
+                )
+        );
+    }
 }
