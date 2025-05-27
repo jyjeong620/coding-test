@@ -3,6 +3,7 @@ package yujin.week9;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -37,5 +38,20 @@ class Week9SolutionTest {
                         -2
                 )
         );
+    }
+
+    @DisplayName("이상한 문자 만들기")
+    @ParameterizedTest
+    @CsvSource({
+            "try hello world, TrY HeLlO WoRlD",
+    })
+    void createStrangeCharacters(String s, String expected) {
+        // given
+        Week9Solution solution = new Week9Solution();
+
+        // when
+        String result = solution.createStrangeCharacters(s);
+
+        assertThat(result).isEqualTo(expected);
     }
 }
