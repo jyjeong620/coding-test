@@ -22,4 +22,14 @@ public class Week9Solution {
         }
         return sb.toString();
     }
+
+    public int minimumRectangle(int[][] sizes) {
+        int minSize = 1;
+        int maxSize = 1;
+        for (int[] size : sizes) {
+            minSize = Math.max(Math.min(size[0], size[1]), minSize);
+            maxSize = Math.max(Math.max(size[0], size[1]), maxSize);
+        }
+        return minSize * maxSize;
+    }
 }

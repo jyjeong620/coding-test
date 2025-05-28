@@ -54,4 +54,35 @@ class Week9SolutionTest {
 
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("최소 직사각형")
+    @ParameterizedTest
+    @MethodSource("minimumRectangleTestCases")
+    void minimumRectangle(int[][] sizes, int expected) {
+        // given
+        Week9Solution solution = new Week9Solution();
+
+        // when
+        int result = solution.minimumRectangle(sizes);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> minimumRectangleTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new int[][]{{60, 50}, {30, 70}, {60, 30}, {80, 40}},
+                        4000
+                ),
+                Arguments.of(
+                        new int[][]{{10, 7}, {12, 3}, {8, 15}, {14, 7}, {5, 15}},
+                        120
+                ),
+                Arguments.of(
+                        new int[][]{{14, 4}, {19, 6}, {6, 16}, {18, 7}, {7, 11}},
+                        133
+                )
+        );
+    }
 }
