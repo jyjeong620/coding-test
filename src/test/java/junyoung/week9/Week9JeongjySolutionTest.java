@@ -34,4 +34,25 @@ class Week9JeongjySolutionTest {
         );
     }
 
+    @DisplayName("폰켓몬")
+    @ParameterizedTest
+    @MethodSource("phonekemonProvider")
+    void phonekemonTest(int[] nums, int expect) {
+        // given
+        Week9JeongjySolution solution = new Week9JeongjySolution();
+
+        // when
+        int actual = solution.getPhonekemon(nums);
+
+        // then
+        assertThat(actual).isEqualTo(expect);
+    }
+
+    private static Stream<Arguments> phonekemonProvider() {
+        return Stream.of(
+                Arguments.of(new int[]{3,1,2,3}, 2),
+                Arguments.of(new int[]{3,3,3,2,2,4}, 3),
+                Arguments.of(new int[]{3,3,3,2,2,2}, 2)
+        );
+    }
 }
