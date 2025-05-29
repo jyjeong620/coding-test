@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class Week9JeongjySolution {
     public int[] divide(int[] arr, int divisor) {
@@ -21,7 +23,7 @@ public class Week9JeongjySolution {
                 .mapToInt(i -> i).toArray();
     }
 
-    public int getPhonekemon(int[] nums) {
+    public int phonekemon(int[] nums) {
         Set<Integer> phonekemon = new HashSet<>();
         for (int num : nums) {
             phonekemon.add(num);
@@ -30,5 +32,10 @@ public class Week9JeongjySolution {
             }
         }
         return phonekemon.size();
+    }
+
+    public long sumNumbers(int a, int b) {
+        return LongStream.rangeClosed(Math.min(a, b), Math.max(a,b))
+                .sum();
     }
 }

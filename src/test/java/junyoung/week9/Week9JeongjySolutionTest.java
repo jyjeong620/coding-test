@@ -3,6 +3,7 @@ package junyoung.week9;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -42,7 +43,7 @@ class Week9JeongjySolutionTest {
         Week9JeongjySolution solution = new Week9JeongjySolution();
 
         // when
-        int actual = solution.getPhonekemon(nums);
+        int actual = solution.phonekemon(nums);
 
         // then
         assertThat(actual).isEqualTo(expect);
@@ -54,5 +55,23 @@ class Week9JeongjySolutionTest {
                 Arguments.of(new int[]{3,3,3,2,2,4}, 3),
                 Arguments.of(new int[]{3,3,3,2,2,2}, 2)
         );
+    }
+
+    @DisplayName("두정수사이의합")
+    @ParameterizedTest
+    @CsvSource({
+            "3,5,12",
+            "3,3,3",
+            "5,3,12"
+    })
+    void sumNumbersTest(int a, int b, int expect) {
+        // given
+        Week9JeongjySolution solution = new Week9JeongjySolution();
+
+        // when
+        long actual = solution.sumNumbers(a, b);
+
+        // then
+        assertThat(actual).isEqualTo(expect);
     }
 }
