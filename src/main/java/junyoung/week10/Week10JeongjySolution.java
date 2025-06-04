@@ -11,4 +11,23 @@ public class Week10JeongjySolution {
                         .thenComparing(Function.identity()))
                 .toArray(String[]::new);
     }
+
+    public boolean countPAndY(String s) {
+        String lowerCase = s.toLowerCase();
+        int pCount = 0;
+        int yCount = 0;
+        for (int i = 0; i < lowerCase.length(); i++) {
+            char c = lowerCase.charAt(i);
+            if (c == 'p') {
+                pCount++;
+            }
+            if (c == 'y') {
+                yCount++;
+            }
+        }
+        if (pCount == 0 && yCount == 0) {
+            return true;
+        }
+        return pCount == yCount;
+    }
 }
