@@ -1,6 +1,5 @@
 package junyoung.week10;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -51,5 +50,25 @@ class Week10JeongjySolutionTest {
 
         // then
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("K번째수")
+    @ParameterizedTest
+    @MethodSource("kNumberProvider")
+    void kNumberTest(int[] array, int[][] commands, int[] expect) {
+        // given
+        Week10JeongjySolution solution = new Week10JeongjySolution();
+
+        // when
+        int[] actual = solution.kNumbers(array, commands);
+
+        // then
+        assertThat(actual).isEqualTo(expect);
+    }
+
+    private static Stream<Arguments> kNumberProvider() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 5, 2, 6, 3, 7, 4}, new int[][]{{2, 5, 3}, {4, 4, 1}, {1, 7, 3}}, new int[]{5, 6, 3})
+        );
     }
 }
