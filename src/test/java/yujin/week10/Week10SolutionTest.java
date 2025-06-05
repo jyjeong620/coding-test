@@ -23,4 +23,21 @@ class Week10SolutionTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("p와 y의 개수")
+    @ParameterizedTest
+    @CsvSource({
+            "pPoooyY,true",
+            "Pyy,false"
+    })
+    void countOfPAndY(String s, boolean expected) {
+        // given
+        Week10Solution solution = new Week10Solution();
+
+        // when
+        boolean result = solution.countOfPAndY(s);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
 }
