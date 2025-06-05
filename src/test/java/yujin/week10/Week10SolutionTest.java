@@ -40,4 +40,22 @@ class Week10SolutionTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("문자열 나누기")
+    @ParameterizedTest
+    @CsvSource({
+            "banana,3",
+            "abracadabra,6",
+            "aaabbaccccabba,3"
+    })
+    void splitStrings(String s, int expected) {
+        // given
+        Week10Solution solution = new Week10Solution();
+
+        // when
+        int result = solution.splitStrings(s);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
 }

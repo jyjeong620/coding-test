@@ -35,4 +35,25 @@ public class Week10Solution {
         }
         return countOfP == countOfY;
     }
+
+    public int splitStrings(String s) {
+        int answer = 0;
+        int anotherCount = 0;
+        int myCount = 0;
+        char myChar = 0;
+        for (char c : s.toCharArray()) {
+            if (myCount == 0) {
+                myChar = c;
+            }
+            myCount += myChar == c ? 1 : 0;
+            anotherCount += myChar != c ? 1 : 0;
+            if (myCount == anotherCount) {
+                answer++;
+                myCount = 0;
+                anotherCount = 0;
+            }
+        }
+        answer += myCount == 0 & anotherCount == 0 ? 0 : 1;
+        return answer;
+    }
 }
