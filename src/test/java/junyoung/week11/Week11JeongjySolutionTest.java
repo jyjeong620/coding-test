@@ -48,4 +48,21 @@ class Week11JeongjySolutionTest {
                 Arguments.of(new int[]{-1, 0, 1}, new int[]{1, 0, -1}, -2)
         );
     }
+
+    @DisplayName("문자열다루기기본")
+    @ParameterizedTest
+    @CsvSource({
+            "a234, false",
+            "1234, true"
+    })
+    void dealWithStringTest(String s, boolean expected) {
+        // given
+        Week11JeongjySolution solution = new Week11JeongjySolution();
+
+        // when
+        boolean actual = solution.dealWithString(s);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }

@@ -22,4 +22,12 @@ public class Week11JeongjySolution {
     public int dotProduct2(int[] a, int[] b) {
         return IntStream.range(0, a.length).map(i -> a[i] * b[i]).sum();
     }
+
+    public boolean dealWithString(String s) {
+        int length = s.length();
+        if (length != 4 && length != 6) {
+            return false;
+        }
+        return s.matches("(^\\d*$)");
+    }
 }
