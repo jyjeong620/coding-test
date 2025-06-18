@@ -22,4 +22,23 @@ public class Week12JeongjySolution {
         }
         return true;
     }
+
+    public int changeToInteger(String s) {
+//        return Integer.parseInt(s);  간단한 방법
+        boolean sign = true;
+        char c = s.charAt(0);
+        int result = 0;
+
+        if (c == '-') {
+            sign = false;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch == '+' || ch == '-') {
+                continue;
+            }
+            result = result * 10 + (ch - '0');
+        }
+        return sign ? result : -result;
+    }
 }

@@ -23,4 +23,22 @@ class Week12JeongjySolutionTest {
         // then
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("문자열을 정수로 바꾸기")
+    @ParameterizedTest
+    @CsvSource({
+        "+1234, 1234",
+        "-1234, -1234"
+    })
+    void changeToIntegerTest(String s, int expected) {
+        // given
+        Week12JeongjySolution solution = new Week12JeongjySolution();
+
+        // when
+        int actual = solution.changeToInteger(s);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }
