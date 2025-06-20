@@ -52,4 +52,26 @@ class SolutionTest {
                 {new String[][]{{"science", "12:40", "50"}, {"music", "12:20", "40"}, {"history", "14:00", "30"}, {"computer", "12:30", "100"}}, new String[]{"science", "history", "computer", "music"}}
         };
     }
+
+    @DisplayName("리코쳇 로봇")
+    @ParameterizedTest
+    @MethodSource("ricochetRobotTestCases")
+    void ricochetRobot(String[] board, int expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        int result = solution.ricochetRobot(board);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    private static Object[][] ricochetRobotTestCases() {
+        return new Object[][]{
+                {new String[]{"...D..R", ".D.G...", "....D.D", "D....D.", "..D...."}, 7},
+                {new String[]{".D.R", "....", ".G..", "...D"}, -1},
+                {new String[]{"D.R", "D..", "..G"}, 1},
+        };
+    }
 }

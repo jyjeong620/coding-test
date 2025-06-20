@@ -1,9 +1,6 @@
 package hyuntae.week12;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Solution {
     public int ironDome(int[][] targets) {
@@ -83,5 +80,71 @@ public class Solution {
     private int toMin(String time) {
         String[] times = time.split(":");
         return Integer.parseInt(times[0]) * 60 + Integer.parseInt(times[1]);
+    }
+
+    private static final int[][] DIRS = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    private static int N, M;
+    private static boolean[][] visited;
+    private static int[] start;
+    private static int[] goal;
+
+    public int ricochetRobot(String[] board) {
+        initialize(board);
+        return BFS(board);
+    }
+
+    private int BFS(String[] board) {
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{start[0], start[1], 0});
+        while (!q.isEmpty()) {
+            int[] now = q.poll();
+            int x = now[0];
+            int y = now[1];
+            int cnt = now[2];
+            if (goal[0] == x && goal[1] == y) {
+                return cnt;
+            }
+            if (visited[x][y]) {
+                continue;
+            }
+            for (int[] dir: DIRS) {
+                int nextX = x + dir[0];
+                int nextY = y + dir[1];
+                if (!isMoveable(nextX, nextY, board)) {
+                    continue;
+                }
+
+                while (true) {
+                    if (!isMoveable(nextX, nextY, board)) {
+                        q.offer(new int[]{nextX - dir[0], nextY - dir[1], cnt + 1});
+                        break;
+                    }
+                    nextX += dir[0];
+                    nextY += dir[1];
+                }
+                visited[x][y] = true;
+            }
+        }
+        return -1;
+    }
+
+    private boolean isMoveable(int x, int y, String[] board) {
+        return x >= 0 && y >= 0 && x < N && y < M && board[x].charAt(y) != 'D';
+    }
+
+    private void initialize(String[] board) {
+        N = board.length;
+        M = board[0].length();
+        visited = new boolean[N][M];
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length(); j++) {
+                if (board[i].charAt(j) == 'R') {
+                    start = new int[]{i, j};
+                }
+                if (board[i].charAt(j) == 'G') {
+                    goal = new int[]{i, j};
+                }
+            }
+        }
     }
 }
