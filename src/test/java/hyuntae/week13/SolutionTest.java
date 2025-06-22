@@ -30,4 +30,26 @@ class SolutionTest {
             {new int[]{1, 2, 3}, new String[]{"diamond", "iron", "stone"}, 3}
         };
     }
+
+    @DisplayName("미로 탈출")
+    @ParameterizedTest
+    @MethodSource("escapeMazeTestCases")
+    void escapeMaze(String[] maps, int expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        int result = solution.escapeMaze(maps);
+
+        // then
+        assertEquals(expected, result);
+    }
+
+    private static Object[][] escapeMazeTestCases() {
+        return new Object[][]{
+            {new String[]{"SOOOL","XXXXO","OOOOO","OXXXX","OOOOE"}, 16},
+            {new String[]{"LOOXS","OOOOX","OOOOO","OOOOO","EOOOO"}, -1},
+            {new String[]{"SOL","XXO","OOE"}, 4},
+        };
+    }
 }

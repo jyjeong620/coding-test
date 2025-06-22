@@ -70,8 +70,75 @@ public class Solution {
     }
 
     public int calculateMaxDigging(int[] picks, int mineralCount) {
-        int picksCount = (int) Arrays.stream(picks)
+        int picksCount = Arrays.stream(picks)
                 .sum() * 5;
         return Math.min(picksCount, mineralCount);
+    }
+
+    private final int[][] DIRS = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    private int N, M;
+    private boolean[][] visited;
+    private int[] lever, start, end;
+
+    public int escapeMaze(String[] maps) {
+        initialize(maps);
+        return BFS(maps);
+    }
+
+    private int BFS(String[] maps) {
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{start[0], start[1], 0});
+        boolean isExitable = false;
+        while (!q.isEmpty()) {
+            int[] now = q.poll();
+            int x = now[0];
+            int y = now[1];
+            int cnt = now[2];
+            if (visited[x][y]) {
+                continue;
+            }
+            visited[x][y] = true;
+            if (!isExitable && x == lever[0] && y == lever[1]) {
+                System.out.println(cnt);
+                isExitable = true;
+                q.clear(); //도착하면 가장 빠른 방법이므로 queue 정리
+                visited = new boolean[N][M]; //방문 기록 초기화 후 이전 위치도 갈 수 있도록
+            }
+            if (isExitable && x == end[0] && y == end[1]) {
+                System.out.println(cnt);
+                return cnt;
+            }
+            for (int[] dir: DIRS) {
+                int nextX = x + dir[0];
+                int nextY = y + dir[1];
+                if (isMoveable(nextX, nextY, maps)) {
+                    q.offer(new int[]{nextX, nextY, cnt + 1});
+                }
+            }
+        }
+        return -1;
+    }
+
+    private boolean isMoveable(int x, int y, String[] maps) {
+        return x >= 0 && y >= 0 && x < N && y < M && maps[x].charAt(y) != 'X';
+    }
+
+    private void initialize(String[] maps) {
+        N = maps.length;
+        M = maps[0].length();
+        visited = new boolean[N][M];
+        for (int i = 0; i < maps.length; i++) {
+            for (int j = 0; j < maps[i].length(); j++) {
+                if (maps[i].charAt(j) == 'S') {
+                    start = new int[]{i, j};
+                }
+                if (maps[i].charAt(j) == 'E') {
+                    end = new int[]{i, j};
+                }
+                if (maps[i].charAt(j) == 'L') {
+                    lever = new int[]{i, j};
+                }
+            }
+        }
     }
 }
