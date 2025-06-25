@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SolutionTest {
     @DisplayName("뒤에 있는 큰 수 찾기")
@@ -30,6 +29,31 @@ class SolutionTest {
                 {new int[]{1, 2, 3}, new int[]{2, 3, -1}},
                 {new int[]{4, 3, 2}, new int[]{-1, -1, -1}},
                 {new int[]{7}, new int[]{-1}}
+        };
+    }
+
+    @DisplayName("숫자 변환하기")
+    @ParameterizedTest
+    @MethodSource("transferNumberTestCases")
+    void transferNumber(int x, int y, int n, int expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        int result = solution.transferNumber(x, y, n);
+
+        // then
+        assertThat(expected)
+                .isEqualTo(result);
+    }
+
+    private static Object[][] transferNumberTestCases() {
+        return new Object[][]{
+                {10, 40, 5, 2},
+                {10, 40, 30, 1},
+                {2, 5, 3, 1},
+                {5, 5, 5, 0},
+                {1, 1000000, 999999, 1}
         };
     }
 }
