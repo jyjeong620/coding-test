@@ -1,5 +1,9 @@
 package yujin.week13;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Week13Solution {
     public int dartGame(String dartResult) {
         String[] rounds = new String[3];
@@ -45,5 +49,52 @@ public class Week13Solution {
         }
 
         return roundScores[0] + roundScores[1] + roundScores[2];
+    }
+
+    public int workoutClothes(int n, int[] lost, int[] reserve) {
+        Arrays.sort(lost);
+        Arrays.sort(reserve);
+
+        List<Integer> actualLost = new ArrayList<>();
+        for(int lostStudent : lost) {
+            boolean actual = true;
+            for(int reserveStudent : reserve) {
+                if (lostStudent == reserveStudent) {
+                    actual = false;
+                    break;
+                }
+            }
+            if (actual) {
+                actualLost.add(lostStudent);
+            }
+        }
+
+        List<Integer> actualReserve = new ArrayList<>();
+        for(int reserveStudent : reserve) {
+            boolean actual = true;
+            for(int lostStudent : lost) {
+                if (reserveStudent == lostStudent) {
+                    actual = false;
+                    break;
+                }
+            }
+            if (actual) {
+                actualReserve.add(reserveStudent);
+            }
+        }
+
+        int answer = n - actualLost.size();
+        for(int reserveStudent : actualReserve) {
+            for (int i = 0; i < actualLost.size(); i ++) {
+                int lostStudent = actualLost.get(i);
+                if (lostStudent == reserveStudent - 1 || lostStudent == reserveStudent + 1) {
+                    answer++;
+                    actualLost.remove(i);
+                    break;
+                }
+            }
+        }
+
+        return answer;
     }
 }
