@@ -56,4 +56,29 @@ class SolutionTest {
                 {1, 1000000, 999999, 1}
         };
     }
+
+    @DisplayName("시소 짝꿍")
+    @ParameterizedTest
+    @MethodSource("seesawTestCases")
+    void seesaw(int[] weights, int expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        long result = solution.seesaw(weights);
+
+        // then
+        assertThat(expected)
+                .isEqualTo(result);
+    }
+
+    private static Object[][] seesawTestCases() {
+        return new Object[][]{
+                {new int[]{100, 200, 300, 400, 500}, 4},
+                {new int[]{100, 200, 300, 400}, 4},
+                {new int[]{100, 200, 300}, 2},
+                {new int[]{100, 200}, 1},
+                {new int[]{100}, 0}
+        };
+    }
 }
