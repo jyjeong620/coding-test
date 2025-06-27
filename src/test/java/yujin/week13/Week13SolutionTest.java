@@ -83,4 +83,32 @@ class Week13SolutionTest {
                 )
         );
     }
+
+    @DisplayName("대충 만든 자판")
+    @ParameterizedTest
+    @MethodSource("roughlyKeyboardTestCases")
+    void roughlyKeyboard(String[] keymap, String[] targets, int[] expected) {
+        // when & then
+        assertThat(solution.roughlyKeyboard(keymap, targets)).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> roughlyKeyboardTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new String[]{"ABACD", "BCEFD"},
+                        new String[]{"ABCD", "AABB"},
+                        new int[]{9, 4}
+                ),
+                Arguments.of(
+                        new String[]{"AA"},
+                        new String[]{"B"},
+                        new int[]{-1}
+                ),
+                Arguments.of(
+                        new String[]{"ABACD", "BCEFD"},
+                        new String[]{"ABCD", "AABB"},
+                        new int[]{9, 4}
+                )
+        );
+    }
 }
