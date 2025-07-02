@@ -1,6 +1,7 @@
 package junyoung.week14;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Week14JeongjySolution {
     public int physicalEducationKit(int n, int[] lost, int[] reserve) {
@@ -31,5 +32,12 @@ public class Week14JeongjySolution {
         }
 
         return answer;
+    }
+
+    public long sortNumberDesc(long n) {
+        String[] splitNumber = String.valueOf(n).split("");
+        Arrays.sort(splitNumber, Comparator.reverseOrder());
+
+        return Long.parseLong(String.join("", splitNumber));
     }
 }

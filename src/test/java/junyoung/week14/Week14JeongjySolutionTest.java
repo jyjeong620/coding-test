@@ -3,6 +3,7 @@ package junyoung.week14;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -32,4 +33,17 @@ class Week14JeongjySolutionTest {
         );
     }
 
+    @DisplayName("정수 내림차순으로 배치하기")
+    @ParameterizedTest
+    @CsvSource({"118372, 873211"})
+    void sortNumberDescTest(long n, long expect) {
+        // given
+        Week14JeongjySolution solution = new Week14JeongjySolution();
+
+        // when
+        long actual = solution.sortNumberDesc(n);
+
+        // then
+        assertThat(actual).isEqualTo(expect);
+    }
 }
