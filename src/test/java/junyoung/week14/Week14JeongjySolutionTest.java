@@ -46,4 +46,23 @@ class Week14JeongjySolutionTest {
         // then
         assertThat(actual).isEqualTo(expect);
     }
+
+    @DisplayName("하샤드 수")
+    @ParameterizedTest
+    @CsvSource({
+            "10, true",
+            "11, false",
+            "12, true",
+            "13, false"
+    })
+    void isHarshadNumberTest(int n, boolean expected) {
+        // given
+        Week14JeongjySolution solution = new Week14JeongjySolution();
+
+        // when
+        boolean actual = solution.isHarshadNumber(n);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }

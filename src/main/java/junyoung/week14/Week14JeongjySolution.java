@@ -10,9 +10,9 @@ public class Week14JeongjySolution {
         Arrays.sort(lost);
         Arrays.sort(reserve);
 
-        for(int i = 0; i < lost.length; i++){
-            for(int j = 0; j < reserve.length; j++){
-                if(lost[i] == reserve[j]){
+        for (int i = 0; i < lost.length; i++) {
+            for (int j = 0; j < reserve.length; j++) {
+                if (lost[i] == reserve[j]) {
                     answer++;
                     lost[i] = -1;
                     reserve[j] = -1;
@@ -39,5 +39,17 @@ public class Week14JeongjySolution {
         Arrays.sort(splitNumber, Comparator.reverseOrder());
 
         return Long.parseLong(String.join("", splitNumber));
+    }
+
+    public boolean isHarshadNumber(int x) {
+        int originalNumber = x;
+        int digitSum = 0;
+
+        while (x > 0) {
+            digitSum += x % 10;
+            x /= 10;
+        }
+
+        return originalNumber % digitSum == 0;
     }
 }
