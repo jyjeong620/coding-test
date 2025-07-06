@@ -78,4 +78,60 @@ public class Solution {
 
         return answer;
     }
+
+    private final List<Integer> answer = new ArrayList<>();
+    private static final int[][] DIRS = new int[][]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+    private boolean[][] visited;
+    private int M, N;
+
+    public int[] uninhabitedIslandTrip(String[] maps) {
+        M = maps.length;
+        N = maps[0].length();
+        visited = new boolean[M][N];
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                if (maps[i].charAt(j) != 'X' && !visited[i][j]) {
+                    answer.add(BFS(maps, i, j));
+                }
+            }
+        }
+        if (answer.size() == 0) {
+            return new int[]{-1};
+        }
+        return answer.stream()
+                .sorted()
+                .mapToInt(i -> i)
+                .toArray();
+    }
+
+    private int BFS(String[] maps, int startX, int startY) {
+        int answer = 0;
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{startX, startY});
+        while (!q.isEmpty()) {
+            int[] now = q.poll();
+            int x = now[0];
+            int y = now[1];
+            if (visited[x][y]) {
+                continue;
+            }
+            visited[x][y] = true;
+            int num = maps[x].charAt(y) - '0';
+            answer += num;
+            for (int[] dir : DIRS) {
+                int nextX = x + dir[0];
+                int nextY = y + dir[1];
+                if (isMoveable(maps, nextX, nextY)) {
+                    q.offer(new int[]{nextX, nextY});
+                }
+            }
+        }
+
+        return answer;
+    }
+
+    private boolean isMoveable(String[] maps, int x, int y) {
+        return x >= 0 && y >= 0 && x < M && y < N && maps[x].charAt(y) != 'X';
+    }
 }

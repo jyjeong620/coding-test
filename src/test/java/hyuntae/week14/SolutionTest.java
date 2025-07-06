@@ -81,4 +81,27 @@ class SolutionTest {
                 {new int[]{100}, 0}
         };
     }
+
+    @DisplayName("무인도 여행")
+    @ParameterizedTest
+    @MethodSource("uninhabitedIslandTrip")
+    void uninhabitedIslandTrip(String[] stones, int[] expected) {
+        // given
+        Solution solution = new Solution();
+
+        // when
+        int[] result = solution.uninhabitedIslandTrip(stones);
+
+        // then
+        assertThat(expected)
+                .isEqualTo(result);
+    }
+
+    private static Object[][] uninhabitedIslandTrip() {
+        return new Object[][]{
+                {new String[]{"X591X","X1X5X","X231X", "1XXX1"}, new int[]{1, 1, 27}},
+                {new String[]{"XXX","XXX","XXX"}, new int[]{-1}},
+        };
+    }
+
 }
