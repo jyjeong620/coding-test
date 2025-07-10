@@ -3,6 +3,7 @@ package junyoung.week15;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -54,5 +55,22 @@ class Week15JeongjySolutionTest {
                 Arguments.of(5, 2, new int[]{1, 4, 5}, 2),
                 Arguments.of(10, 3, new int[]{1, 3, 6, 7}, 2)
         );
+    }
+
+    @DisplayName("나머지가 1이되는 수 찾기")
+    @ParameterizedTest
+    @CsvSource({
+            "10, 3",
+            "12, 11"
+    })
+    void remainderOneTest(int n, int expected) {
+        // given
+        Week15JeongjySolution solution = new Week15JeongjySolution();
+
+        // when
+        int actual = solution.remainderOne(n);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
     }
 }

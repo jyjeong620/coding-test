@@ -28,4 +28,12 @@ public class Week15JeongjySolution {
         }
         return answer;
     }
+
+    public int remainderOne(int n) {
+        int answer = 2;
+        while (n % answer != 1) {
+            answer++;
+        }
+        return answer;
+    }
 }
