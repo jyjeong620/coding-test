@@ -1,5 +1,7 @@
 package junyoung.week15;
 
+import java.util.Arrays;
+
 public class Week15JeongjySolution {
     public long getNextSquareOrMinusOne(long n) {
         long sqrt = (long) Math.sqrt(n);
@@ -10,5 +12,20 @@ public class Week15JeongjySolution {
             }
         }
         return -1L;
+    }
+
+    public int overpainting(int n, int m, int[] section) {
+        Arrays.sort(section);
+
+        int answer = 0;
+        int lastPainted = 0;
+
+        for (int s : section) {
+            if (s > lastPainted) {
+                lastPainted = s + m - 1;
+                answer++;
+            }
+        }
+        return answer;
     }
 }
