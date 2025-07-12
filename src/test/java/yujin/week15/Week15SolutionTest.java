@@ -42,4 +42,24 @@ class Week15SolutionTest {
                 )
         );
     }
+
+    @DisplayName("데이터 분석")
+    @ParameterizedTest
+    @MethodSource("analysisDataTestCases")
+    void analysisData(int[][] data, String ext, int valExt, String sortBy, int[][] expected) {
+        // when & then
+        assertThat(solution.analysisData(data, ext, valExt, sortBy)).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> analysisDataTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new int[][]{{1, 20300104, 100, 80}, {2, 20300804, 847, 37}, {3, 20300401, 10, 8}},
+                        "date",
+                        20300501,
+                        "remain",
+                        new int[][]{{3, 20300401, 10, 8}, {1, 20300104, 100, 80}}
+                )
+        );
+    }
 }

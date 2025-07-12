@@ -1,5 +1,7 @@
 package yujin.week15;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Stack;
 
 public class Week15Solution {
@@ -31,5 +33,15 @@ public class Week15Solution {
             }
         }
         return answer;
+    }
+
+    public int[][] analysisData(int[][] data, String ext, int valExt, String sortBy) {
+        int extIndex = ext.equals("code") ? 0 : ext.equals("date") ? 1 : ext.equals("maximum") ? 2 : 3;
+        int sortByIndex = sortBy.equals("code") ? 0 : sortBy.equals("date") ? 1 : sortBy.equals("maximum") ? 2 : 3;
+
+        return Arrays.stream(data)
+                .filter(row -> row[extIndex] < valExt)
+                .sorted(Comparator.comparingInt(row -> row[sortByIndex]))
+                .toArray(int[][]::new);
     }
 }
