@@ -44,4 +44,38 @@ public class Week15Solution {
                 .sorted(Comparator.comparingInt(row -> row[sortByIndex]))
                 .toArray(int[][]::new);
     }
+
+    public int clawMachineGame(int[][] board, int[] moves) {
+        int[] rowIndex = new int[board.length];
+        for (int i = 0; i < rowIndex.length; i++) {
+            for (int j = 0; j < rowIndex.length; j++) {
+                if (board[j][i] != 0) {
+                    rowIndex[i] = j;
+                    break;
+                }
+                if (j == rowIndex.length - 1) {
+                    rowIndex[i] = -1;
+                }
+            }
+        }
+        int[] dolls = new int[moves.length];
+        int dollsIndex = 0;
+        int answer = 0;
+        for (int move : moves) {
+            move = move - 1;
+            if (rowIndex[move] == -1) {
+                continue;
+            }
+            dolls[dollsIndex] = board[rowIndex[move]][move];
+            if (dollsIndex != 0) {
+                if (dolls[dollsIndex] == dolls[dollsIndex - 1]) {
+                    answer += 2;
+                    dollsIndex -= 2;
+                }
+            }
+            rowIndex[move] = rowIndex[move] == board.length - 1 ? -1 : rowIndex[move] + 1;
+            dollsIndex++;
+        }
+        return answer;
+    }
 }
