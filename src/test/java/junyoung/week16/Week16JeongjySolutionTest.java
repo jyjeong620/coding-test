@@ -3,7 +3,11 @@ package junyoung.week16;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,5 +33,23 @@ class Week16JeongjySolutionTest {
 
         // then
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @DisplayName("푸드파이터")
+    @ParameterizedTest
+    @MethodSource("foodFighterProvider")
+    void foodFighterTest(int[] food, String expected) {
+        // given & when
+        String actual = solution.foodFighter(food);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> foodFighterProvider() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 3, 4, 6}, "1223330333221"),
+                Arguments.of(new int[]{1, 7, 1, 2}, "111303111")
+        );
     }
 }

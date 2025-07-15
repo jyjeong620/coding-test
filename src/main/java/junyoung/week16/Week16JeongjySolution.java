@@ -15,4 +15,14 @@ public class Week16JeongjySolution {
         }
         return joiner.toString();
     }
+
+    public String foodFighter(int[] food) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 1; i< food.length; i++) {
+            int foodCount = food[i] / 2;
+            sb.append(String.valueOf(i).repeat(foodCount));
+        }
+        String foodList = sb.toString();
+        return foodList + "0" + sb.reverse();
+    }
 }
