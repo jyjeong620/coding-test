@@ -52,4 +52,22 @@ class Week16JeongjySolutionTest {
                 Arguments.of(new int[]{1, 7, 1, 2}, "111303111")
         );
     }
+
+    @DisplayName("가장 가까운 같은 글자")
+    @ParameterizedTest
+    @MethodSource("mostNearSameStringProvider")
+    void mostNearSameStringTest(String s, int[] expected) {
+        // given & when
+        int[] actual = solution.mostNearSameString(s);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> mostNearSameStringProvider() {
+        return Stream.of(
+                Arguments.of("banana", new int[]{-1, -1, -1, 2, 2, 2}),
+                Arguments.of("foobar", new int[]{-1, -1, 1, -1, -1, -1})
+        );
+    }
 }
