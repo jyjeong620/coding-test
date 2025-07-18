@@ -45,4 +45,27 @@ class Week16SolutionTest {
                 )
         );
     }
+
+    @DisplayName("성격 유형 검사하기")
+    @ParameterizedTest
+    @MethodSource("kakaotiTestCases")
+    void kakaoti(String[] survey, int[] choices, String expected) {
+        // when & then
+        assertThat(solution.kakaoti(survey, choices)).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> kakaotiTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new String[]{"AN", "CF", "MJ", "RT", "NA"},
+                        new int[]{5, 3, 2, 7, 5},
+                        "TCMA"
+                ),
+                Arguments.of(
+                        new String[]{"TR", "RT", "TR"},
+                        new int[]{7, 1, 3},
+                        "RCJA"
+                )
+        );
+    }
 }
