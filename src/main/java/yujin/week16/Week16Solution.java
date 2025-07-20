@@ -83,4 +83,43 @@ public class Week16Solution {
 
         return sb.toString();
     }
+
+    public String recommendNewId(String newId) {
+        StringBuilder sb = new StringBuilder();
+        char[] chars = newId.toCharArray();
+        for (char value : chars) {
+            if (Character.isLetter(value)) {
+                sb.append(Character.toLowerCase(value));
+            } else if (Character.isDigit(value) || value == '-' || value == '_') {
+                sb.append(value);
+            } else if (value == '.' && sb.length() != 0 && sb.charAt(sb.length() - 1) != '.') {
+                sb.append(value);
+            }
+        }
+
+        if (sb.length() == 0) {
+            sb.append('a');
+        }
+
+        if (sb.charAt(0) == '.') {
+            sb.deleteCharAt(0);
+        }
+
+        if (sb.length() > 15) {
+            sb.setLength(15);
+        }
+
+        if (sb.charAt(sb.length() - 1) == '.') {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
+        if (sb.length() < 3) {
+            char lastChar = sb.charAt(sb.length() - 1);
+            while (sb.length() < 3) {
+                sb.append(lastChar);
+            }
+        }
+
+        return sb.toString();
+    }
 }

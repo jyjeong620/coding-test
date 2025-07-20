@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -67,5 +68,19 @@ class Week16SolutionTest {
                         "RCJA"
                 )
         );
+    }
+
+    @DisplayName("신규 아이디 추천")
+    @ParameterizedTest
+    @CsvSource({
+            "...!@BaT#*..y.abcdefghijklm,bat.y.abcdefghi",
+            "z-+.^.,z--",
+            "=.=,aaa",
+            "123_.def,123_.def",
+            "abcdefghijklmn.p,abcdefghijklmn"
+    })
+    void recommendNewId(String newId, String expected) {
+        // when & then
+        assertThat(solution.recommendNewId(newId)).isEqualTo(expected);
     }
 }
