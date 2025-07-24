@@ -39,4 +39,22 @@ class Week17JeongjySolutionTest {
                 )
         );
     }
+
+    @DisplayName("가장 작은 수 제거하기")
+    @ParameterizedTest
+    @MethodSource({"smallestNumberRemoveProvider"})
+    void smallestNumberRemoveTest(int[] arr, int[] expected) {
+        // given & when
+        int[] actual = solution.smallestNumberRemove(arr);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+    public static Stream<Arguments> smallestNumberRemoveProvider() {
+        return Stream.of(
+                Arguments.of(new int[]{4, 3, 2, 1}, new int[]{4, 3, 2}),
+                Arguments.of(new int[]{10}, new int[]{-1}),
+                Arguments.of(new int[]{1, 2, 3, 4, 5}, new int[]{2, 3, 4, 5})
+        );
+    }
 }
