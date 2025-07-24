@@ -1,7 +1,6 @@
 package junyoung.week17;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Week17JeongjySolution {
     public String[] running(String[] players, String[] callings) {
@@ -46,5 +45,24 @@ public class Week17JeongjySolution {
         }
 
         return result;
+    }
+
+    public int choiceMandarin(int k, int[] tangerine) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        for (int size : tangerine) {
+            countMap.put(size, countMap.getOrDefault(size, 0) + 1);
+        }
+        List<Integer> counts = new ArrayList<>(countMap.values());
+        counts.sort(Collections.reverseOrder());
+        int totalCount = 0;
+        int mandarinCount = 0;
+        for (int count : counts) {
+            totalCount += count;
+            mandarinCount++;
+            if (totalCount >= k) {
+                break;
+            }
+        }
+        return mandarinCount;
     }
 }

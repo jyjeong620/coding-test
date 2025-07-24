@@ -57,4 +57,22 @@ class Week17JeongjySolutionTest {
                 Arguments.of(new int[]{1, 2, 3, 4, 5}, new int[]{2, 3, 4, 5})
         );
     }
+
+    @DisplayName("귤고르기")
+    @ParameterizedTest
+    @MethodSource({"choiceMandarinProvider"})
+    void choiceMandarinTest(int k, int[] tangerine, int expected) {
+        // given & when
+        int actual = solution.choiceMandarin(k, tangerine);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+    public static Stream<Arguments> choiceMandarinProvider() {
+        return Stream.of(
+                Arguments.of(6, new int[]{1, 3, 2, 5, 4, 5, 2, 3}, 3),
+                Arguments.of(4, new int[]{1, 3, 2, 5, 4, 5, 2, 3}, 2),
+                Arguments.of(2, new int[]{1, 1, 1, 1, 2, 2, 2, 3}, 1)
+        );
+    }
 }
