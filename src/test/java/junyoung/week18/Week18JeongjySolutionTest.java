@@ -8,7 +8,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class Week18JeongjySolutionTest {
     Week18JeongjySolution solution;
@@ -26,7 +27,7 @@ class Week18JeongjySolutionTest {
         int[] actual = solution.GCDAndLCM(n, m);
 
         // then
-        assertArrayEquals(expected, actual);
+        assertThat(actual).isEqualTo(expected);
     }
 
     public static Stream<Arguments> gcdAndLcmProvider() {
@@ -36,4 +37,22 @@ class Week18JeongjySolutionTest {
         );
     }
 
+    @DisplayName("삼총사")
+    @ParameterizedTest
+    @MethodSource("threeMusketeersProvider")
+    void threeMusketeersTest(int[] number, int expected) {
+        // given & when
+        int actual = solution.threeMusketeers(number);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> threeMusketeersProvider() {
+        return Stream.of(
+                Arguments.of(new int[]{-2, 3, 0, 2, -5}, 2),
+                Arguments.of(new int[]{-3, -2, -1, 0, 1, 2, 3}, 5),
+                Arguments.of(new int[]{-1, 1, -1, 1}, 0)
+        );
+    }
 }
