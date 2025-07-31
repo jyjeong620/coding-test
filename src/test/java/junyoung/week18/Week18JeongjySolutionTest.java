@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -55,4 +56,19 @@ class Week18JeongjySolutionTest {
                 Arguments.of(new int[]{-1, 1, -1, 1}, 0)
         );
     }
+
+    @DisplayName("마법의 엘리베이터")
+    @ParameterizedTest
+    @CsvSource({
+            "16, 6",
+            "2554, 16"
+    })
+    void magicElevatorTest(int storey, int expected) {
+        // given & when
+        int actual = solution.magicElevator(storey);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
 }

@@ -29,4 +29,24 @@ public class Week18JeongjySolution {
         }
         return count;
     }
+
+    public int magicElevator(int storey){
+        int count = 0;
+        while (storey > 0) {
+            int digit = storey % 10;
+            if (digit > 5) {
+                count += (10 - digit);
+                storey += 10;
+            } else if (digit < 5) {
+                count += digit;
+            } else {
+                count += 5;
+                if ((storey / 10) % 10 >= 5) {
+                    storey += 10;
+                }
+            }
+            storey /= 10;
+        }
+        return count;
+    }
 }
