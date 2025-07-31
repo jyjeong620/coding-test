@@ -39,4 +39,34 @@ public class Week18Solution {
                 .mapToInt(Integer::parseInt)
                 .toArray();
     }
+
+    public int flexibleWorkSystem(int[] schedules, int[][] timelogs, int startday) {
+        int answer = 0;
+        for (int i = 0; i < schedules.length; i++) {
+            int max = calculateMaxTime(schedules[i]);
+            int[] timelog = timelogs[i];
+            int count = 0;
+            for (int j = 0; j < timelog.length; j++) {
+                if ((startday + j) % 7 < 6 && (startday + j) % 7 > 0) {
+                    if (timelog[j] <= max) {
+                        count++;
+                    }
+                }
+            }
+            if (count == 5) {
+                answer++;
+            }
+        }
+        return answer;
+    }
+
+    private int calculateMaxTime(int schedule) {
+        int hour = schedule / 100;
+        int minute = schedule % 100 + 10;
+        if (minute >= 60) {
+            hour++;
+            minute -= 60;
+        }
+        return hour * 100 + minute;
+    }
 }
