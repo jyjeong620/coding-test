@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -72,5 +73,13 @@ class Week18SolutionTest {
                         2
                 )
         );
+    }
+
+    @DisplayName("약수의 개수와 덧셈")
+    @ParameterizedTest
+    @CsvSource({"13,17,43", "24,27,52"})
+    void countAndSum(int left, int right, int expected) {
+        // when & then
+        assertThat(solution.countAndSum(left, right)).isEqualTo(expected);
     }
 }

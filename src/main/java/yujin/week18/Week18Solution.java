@@ -69,4 +69,22 @@ public class Week18Solution {
         }
         return hour * 100 + minute;
     }
+
+    public int countAndSum(int left, int right){
+        int answer = 0;
+        for(int i = left; i <= right; i++) {
+            answer = answer + (countDivisor(i) % 2 == 0 ? i : -i);
+        }
+        return answer;
+    }
+
+    private int countDivisor(int number) {
+        int count = 0;
+        for(int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
