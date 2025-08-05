@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -52,4 +53,16 @@ class Week19JeongjySolutionTest {
         );
     }
 
+    @DisplayName("부족한 금액 계산하기")
+    @ParameterizedTest
+    @CsvSource({
+            "3,20,4,10"
+    })
+    void calculateMoney(int price, int money, int count, long expected) {
+        // given & when
+        long actual = solution.calculateMoney(price, money, count);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
 }

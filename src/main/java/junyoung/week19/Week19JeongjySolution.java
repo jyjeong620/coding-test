@@ -19,4 +19,13 @@ public class Week19JeongjySolution {
         }
         return answer;
     }
+
+    public long calculateMoney(int price, int money, int count) {
+        long totalPrice = 0;
+        for (int i = 1; i <= count; i++) {
+            totalPrice += price * i;
+        }
+        long insufficientAmount = money - totalPrice;
+        return insufficientAmount > 0 ? 0 : insufficientAmount * -1;
+    }
 }
