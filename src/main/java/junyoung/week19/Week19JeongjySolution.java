@@ -28,4 +28,43 @@ public class Week19JeongjySolution {
         long insufficientAmount = money - totalPrice;
         return insufficientAmount > 0 ? 0 : insufficientAmount * -1;
     }
+
+    public int babbling(String[] babbling) {
+        String[] words = {"aya", "ye", "woo", "ma"};
+        int count = 0;
+
+        for (String s : babbling) {
+            if (canSpeak(s, words)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private boolean canSpeak(String str, String[] words) {
+        int i = 0;
+        String prevWord = "";
+
+        while (i < str.length()) {
+            boolean found = false;
+
+            for (String word : words) {
+                if (str.startsWith(word, i)) {
+                    if (word.equals(prevWord)) {
+                        return false;
+                    }
+                    prevWord = word;
+                    i += word.length();
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

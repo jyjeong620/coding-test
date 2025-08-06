@@ -65,4 +65,23 @@ class Week19JeongjySolutionTest {
         // then
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("옹알이")
+    @ParameterizedTest
+    @MethodSource({"babblingProvider"})
+    void babbling(String[] babbling, int expected) {
+        // given & when
+        int actual = solution.babbling(babbling);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> babblingProvider() {
+        return Stream.of(
+                Arguments.of(new String[]{"aya", "yee", "u", "maa"}, 1),
+                Arguments.of(new String[]{"ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"}, 2),
+                Arguments.of(new String[]{"wooyewoo"}, 1)
+        );
+    }
 }
