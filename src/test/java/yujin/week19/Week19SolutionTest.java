@@ -38,4 +38,35 @@ class Week19SolutionTest {
                 )
         );
     }
+
+    @DisplayName("공원 산책")
+    @ParameterizedTest
+    @MethodSource("walkPartTestCases")
+    void walkPark(String[] park, String[] routes, int[] expected) {
+        // when
+        int[] result = solution.walkPark(park, routes);
+
+        // then
+        assertArrayEquals(expected, result);
+    }
+
+    public static Stream<Arguments> walkPartTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new String[]{"SOO", "OOO", "OOO"},
+                        new String[]{"E 2", "S 2", "W 1"},
+                        new int[]{2, 1}
+                ),
+                Arguments.of(
+                        new String[]{"SOO", "OXX", "OOO"},
+                        new String[]{"E 2", "S 2", "W 1"},
+                        new int[]{0, 1}
+                ),
+                Arguments.of(
+                        new String[]{"OSO", "OOO", "OXO", "OOO"},
+                        new String[]{"E 2", "S 3", "W 1"},
+                        new int[]{0, 0}
+                )
+        );
+    }
 }
