@@ -102,4 +102,38 @@ public class Week19Solution {
 
         return answer;
     }
+
+    public int wrapBandage(int[] bandage, int health, int[][] attacks) {
+        int lastAttackSecond = attacks[attacks.length - 1][0];
+        int maxHealth = health;
+        int successCount = 0;
+        for (int second = 1; second <= lastAttackSecond; second++) {
+            int attack = attack(second, attacks);
+            if (attack > 0) {
+                successCount = 0;
+                health = health - attack;
+                if (health <= 0) {
+                    return -1;
+                }
+            } else {
+                successCount = successCount + 1;
+                if (successCount == bandage[0]) {
+                    successCount = 0;
+                    health = Math.min(maxHealth, health + bandage[1] + bandage[2]);
+                } else {
+                    health = Math.min(maxHealth, health + bandage[1]);
+                }
+            }
+        }
+        return health;
+    }
+
+    private int attack(int second, int[][] attacks) {
+        for (int[] attack : attacks) {
+            if (attack[0] == second) {
+                return attack[1];
+            }
+        }
+        return 0;
+    }
 }

@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class Week19SolutionTest {
     private Week19Solution solution;
@@ -26,7 +26,7 @@ class Week19SolutionTest {
         String[] result = solution.runningRace(players, callings);
 
         // then
-        assertArrayEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     public static Stream<Arguments> runningRaceTestCases() {
@@ -47,7 +47,7 @@ class Week19SolutionTest {
         int[] result = solution.walkPark(park, routes);
 
         // then
-        assertArrayEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     public static Stream<Arguments> walkPartTestCases() {
@@ -66,6 +66,46 @@ class Week19SolutionTest {
                         new String[]{"OSO", "OOO", "OXO", "OOO"},
                         new String[]{"E 2", "S 3", "W 1"},
                         new int[]{0, 0}
+                )
+        );
+    }
+
+    @DisplayName("붕대 감기")
+    @ParameterizedTest
+    @MethodSource("wrapBandageTestCases")
+    void wrapBandage(int[] bandage, int health, int[][] attacks, int expected) {
+        // when
+        int result = solution.wrapBandage(bandage, health, attacks);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> wrapBandageTestCases() {
+        return Stream.of(
+                Arguments.of(
+                        new int[]{5, 1, 5},
+                        30,
+                        new int[][]{{2, 10}, {9, 15}, {10, 5}, {11, 5}},
+                        5
+                ),
+                Arguments.of(
+                        new int[]{3, 2, 7},
+                        20,
+                        new int[][]{{1, 15}, {5, 16}, {8, 6}},
+                        -1
+                ),
+                Arguments.of(
+                        new int[]{4, 2, 7},
+                        20,
+                        new int[][]{{1, 15}, {5, 16}, {8, 6}},
+                        -1
+                ),
+                Arguments.of(
+                        new int[]{1, 1, 1},
+                        5,
+                        new int[][]{{1, 2}, {3, 2}},
+                        3
                 )
         );
     }
