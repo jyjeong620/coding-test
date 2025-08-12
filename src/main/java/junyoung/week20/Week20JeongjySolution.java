@@ -1,6 +1,9 @@
 package junyoung.week20;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Week20JeongjySolution {
     public int rollCakeCutting(int[] topping) {
@@ -28,6 +31,31 @@ public class Week20JeongjySolution {
             }
         }
 
+        return count;
+    }
+
+    public int divisorCountAndSum(int left, int right) {
+        int answer = 0;
+        for (int i = left; i <= right; i++) {
+            if (countDivisor(i) % 2 == 0) {
+                answer += i;
+            } else {
+                answer -= i;
+            }
+        }
+        return answer;
+    }
+
+    private int countDivisor(int number) {
+        int count = 0;
+        for (int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                count++;
+                if (i * i != number) {
+                    count++;
+                }
+            }
+        }
         return count;
     }
 }
