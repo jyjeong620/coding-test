@@ -50,4 +50,22 @@ class Week20JeongjySolutionTest {
         // then
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("과일 장수")
+    @ParameterizedTest
+    @MethodSource("fruitSellerProvider")
+    void fruitSellerTest(int k, int m, int[] score, int expected) {
+        // given & when
+        int actual = solution.fruitSeller(k, m, score);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> fruitSellerProvider() {
+        return Stream.of(
+                Arguments.of(3, 4, new int[]{1, 2, 3, 1, 2, 3, 1}, 8),
+                Arguments.of(4, 3, new int[]{4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2}, 33)
+        );
+    }
 }

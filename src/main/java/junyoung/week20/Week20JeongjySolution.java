@@ -1,5 +1,6 @@
 package junyoung.week20;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -57,5 +58,18 @@ public class Week20JeongjySolution {
             }
         }
         return count;
+    }
+
+    public int fruitSeller(int k, int m, int[] score) {
+
+        Arrays.sort(score);
+        int totalPrice = 0;
+
+        for (int i = score.length - m; i >= 0; i -= m) {
+            totalPrice += score[i] * m;
+        }
+
+        return totalPrice;
+
     }
 }
