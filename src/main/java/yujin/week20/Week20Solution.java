@@ -1,5 +1,8 @@
 package yujin.week20;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Week20Solution {
     public int[][] arraySum(int[][] arr1, int[][] arr2) {
         int[][] answer = new int[arr1.length][arr1[0].length];
@@ -20,5 +23,20 @@ public class Week20Solution {
         }
 
         return Integer.parseInt(s);
+    }
+
+    public int[] distinctNumbers(int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+        int currentValue = -1;
+        for (int value : arr) {
+            if (value != currentValue) {
+                answer.add(value);
+            }
+            currentValue = value;
+        }
+
+        return answer.stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
     }
 }

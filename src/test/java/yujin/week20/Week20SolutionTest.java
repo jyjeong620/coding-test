@@ -61,4 +61,22 @@ class Week20SolutionTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @DisplayName("같은 숫자는 싫어")
+    @ParameterizedTest
+    @MethodSource("distinctNumbersTestCases")
+    void distinctNumbers(int[] arr, int[] expected) {
+        // when
+        int[] result = solution.distinctNumbers(arr);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    public static Stream<Arguments> distinctNumbersTestCases() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 1, 3, 3, 0, 1, 1}, new int[]{1, 3, 0, 1}),
+                Arguments.of(new int[]{4, 4, 4, 3, 3}, new int[]{4, 3})
+        );
+    }
 }
