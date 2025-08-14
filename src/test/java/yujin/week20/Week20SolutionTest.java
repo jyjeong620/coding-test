@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -42,5 +43,22 @@ class Week20SolutionTest {
                         new int[][]{{4}, {6}}
                 )
         );
+    }
+
+    @DisplayName("숫자 문자열과 영단어")
+    @ParameterizedTest
+    @CsvSource({
+            "one4seveneight, 1478",
+            "23four5six7, 234567",
+            "2three45sixseven, 234567",
+            "123, 123",
+            "oneoneone, 111"
+    })
+    void convertEnglishToNumber(String s, int expected) {
+        // when
+        int result = solution.convertEnglishToNumber(s);
+
+        // then
+        assertThat(result).isEqualTo(expected);
     }
 }

@@ -10,4 +10,15 @@ public class Week20Solution {
         }
         return answer;
     }
+
+    public int convertEnglishToNumber(String s) {
+        String[] english = new String[]{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        for (int i = 0; i < english.length; i++) {
+            if (s.contains(english[i])) {
+                s = s.replaceAll(english[i], Integer.toString(i));
+            }
+        }
+
+        return Integer.parseInt(s);
+    }
 }
