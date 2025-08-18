@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Week20JeongjySolutionTest {
+class Week21JeongjySolutionTest {
     private Week20JeongjySolution solution;
 
     @BeforeEach
