@@ -25,4 +25,14 @@ class Week21SolutionTest {
     void partString(String t, String p, int expected) {
         assertThat(solution.partString(t, p)).isEqualTo(expected);
     }
+
+    @DisplayName("3진법 뒤집기")
+    @ParameterizedTest
+    @CsvSource(value = {
+            "45, 7",
+            "125, 229"
+    })
+    void reverseNumber(int n, int expected) {
+        assertThat(solution.reverseNumber(n)).isEqualTo(expected);
+    }
 }
