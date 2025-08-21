@@ -49,4 +49,26 @@ public class Week21JeongjySolution {
                 .get()
                 .getKey();
     }
+
+    public int discountEvent(String[] want, int[] number, String[] discount) {
+        int count = 0;
+        Map<String, Integer> wantToNumber = new HashMap<>();
+        for (int i = 0; i < want.length; i++) {
+            wantToNumber.put(want[i], number[i]);
+        }
+
+        for (int i = 0; i < discount.length - 9; i++) {
+            Map<String, Integer> tempWantToNumber = new HashMap<>(wantToNumber);
+            for (int j = i; j < i + 10; j++) {
+                tempWantToNumber.computeIfPresent(discount[j], (k, v) -> v - 1);
+            }
+            boolean isShoppingCompleted = tempWantToNumber.entrySet()
+                    .stream()
+                    .noneMatch(e -> e.getValue() > 0);
+            if (isShoppingCompleted) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
