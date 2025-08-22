@@ -1,5 +1,7 @@
 package yujin.week21;
 
+import java.util.Arrays;
+
 public class Week21Solution {
     public int partString(String t, String p) {
         int length = p.length();
@@ -26,5 +28,14 @@ public class Week21Solution {
         }
 
         return Integer.parseInt(sb.toString(), 3);
+    }
+
+    public String minAndMax(String s) {
+        int[] numbers = Arrays.stream(s.split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        Arrays.sort(numbers);
+        return numbers[0] + " " + numbers[numbers.length - 1];
     }
 }

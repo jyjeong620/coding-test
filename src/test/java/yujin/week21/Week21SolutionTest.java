@@ -35,4 +35,11 @@ class Week21SolutionTest {
     void reverseNumber(int n, int expected) {
         assertThat(solution.reverseNumber(n)).isEqualTo(expected);
     }
+
+    @DisplayName("최댓값과 최솟값")
+    @ParameterizedTest
+    @CsvSource(value = {"1 2 3 4, 1 4", "-1 -2 -3 -4, -4 -1", "-1 -1, -1 -1"})
+    void minAndMax(String s, String expected) {
+        assertThat(solution.minAndMax(s)).isEqualTo(expected);
+    }
 }
