@@ -1,0 +1,41 @@
+package junyoung.week22;
+
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+
+public class Week22JeongjySolution {
+
+    public int[] getLottoRanks(int[] lottos, int[] win_nums) {
+        Set<Integer> winNumSet = Arrays.stream(win_nums)
+                .boxed()
+                .collect(Collectors.toSet());
+        int zeroCount = 0;
+        int winCount = 0;
+        for (int lotto : lottos) {
+            if (lotto == 0) {
+                zeroCount++;
+            }
+            if (winNumSet.contains(lotto)) {
+                winCount++;
+            }
+        }
+
+        int highestRank = getRanking(winCount + zeroCount);
+        int lowestRank = getRanking(winCount);
+
+        return new int[]{highestRank, lowestRank};
+    }
+
+    public int getRanking(int winCount) {
+        return switch (winCount) {
+            case 6 -> 1;
+            case 5 -> 2;
+            case 4 -> 3;
+            case 3 -> 4;
+            case 2 -> 5;
+            default -> 6;
+        };
+    }
+}
