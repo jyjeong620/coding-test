@@ -38,4 +38,28 @@ public class Week22JeongjySolution {
             default -> 6;
         };
     }
+
+    public int weaponOfKnight(int number, int limit, int power) {
+        int ironWeight = 0;
+        for (int i = 1; i <= number; i++) {
+            int divisorCount = countDivisor(i);
+            ironWeight += divisorCount > limit ? power : divisorCount;
+
+        }
+        return ironWeight;
+    }
+
+    private int countDivisor(int number) {
+        int count = 0;
+
+        for (int i = 1; i * i <= number; i++) {
+            if (number % i == 0) {
+                count++;
+                if (i * i != number) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }

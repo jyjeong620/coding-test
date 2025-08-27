@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -35,5 +36,19 @@ class Week22JeongjySolutionTest {
                 Arguments.of(new int[]{0, 0, 0, 0, 0, 0}, new int[]{38, 19, 20, 40, 15, 25}, new int[]{1, 6}),
                 Arguments.of(new int[]{45, 4, 35, 20, 3, 9}, new int[]{20, 9, 3, 45, 4, 35}, new int[]{1, 1})
         );
+    }
+
+    @DisplayName("기사단원의 무기")
+    @ParameterizedTest
+    @CsvSource({
+            "5, 3, 2, 10",
+            "10, 3, 2, 21",
+    })
+    void weaponOfKnightTest(int number, int limit, int power, int expected) {
+        // given & when
+        int actual = solution.weaponOfKnight(number, limit, power);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
     }
 }
