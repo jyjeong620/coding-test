@@ -43,4 +43,14 @@ public class Week22Solution {
         }
         return answer;
     }
+
+    public String makeJadenCase(String s) {
+        StringBuilder sb = new StringBuilder();
+        boolean isFirstChar = true;
+        for (char value : s.toLowerCase().toCharArray()) {
+            sb.append(isFirstChar ? Character.toUpperCase(value) : value);
+            isFirstChar = value == ' ';
+        }
+        return sb.toString();
+    }
 }

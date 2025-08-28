@@ -3,6 +3,7 @@ package yujin.week22;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -34,5 +35,16 @@ class Week22SolutionTest {
                         new int[]{0, 0}
                 )
         );
+    }
+
+    @DisplayName("JadenCase 문자열 만들기")
+    @ParameterizedTest
+    @CsvSource({
+            "3people unFollowed me,3people Unfollowed Me",
+            "for the last week,For The Last Week",
+            "'  for the what  1what  ','  For The What  1what  '"
+    })
+    void makeJadenCase(String s, String expected) {
+        assertThat(solution.makeJadenCase(s)).isEqualTo(expected);
     }
 }
