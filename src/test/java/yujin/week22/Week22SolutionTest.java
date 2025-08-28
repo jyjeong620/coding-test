@@ -47,4 +47,18 @@ class Week22SolutionTest {
     void makeJadenCase(String s, String expected) {
         assertThat(solution.makeJadenCase(s)).isEqualTo(expected);
     }
+
+    @DisplayName("최솟값 만들기")
+    @ParameterizedTest
+    @MethodSource("makeMinNumberTestCases")
+    void makeMinNumber(int[] a, int[] b, int expected) {
+        assertThat(solution.makeMinNumber(a, b)).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> makeMinNumberTestCases() {
+        return Stream.of(
+                Arguments.of(new int[]{1, 4, 2}, new int[]{5, 4, 4}, 29),
+                Arguments.of(new int[]{1, 2}, new int[]{3, 4}, 10)
+        );
+    }
 }

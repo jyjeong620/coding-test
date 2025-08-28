@@ -1,5 +1,7 @@
 package yujin.week22;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -52,5 +54,16 @@ public class Week22Solution {
             isFirstChar = value == ' ';
         }
         return sb.toString();
+    }
+
+    public int makeMinNumber(int[] a, int[] b) {
+        Arrays.sort(a);
+        Arrays.sort(b);
+        int answer = 0;
+        int length = a.length;
+        for (int i = 0; i < a.length; i++) {
+            answer += a[i] * b[length - 1 - i];
+        }
+        return answer;
     }
 }
