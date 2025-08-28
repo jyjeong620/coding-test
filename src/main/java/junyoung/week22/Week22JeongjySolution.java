@@ -62,4 +62,21 @@ public class Week22JeongjySolution {
         }
         return count;
     }
+
+    public String[] secretMap(int n, int[] arr1, int[] arr2) {
+        String[] map = new String[n];
+        for (int i = 0; i < n; i++) {
+            int combined = arr1[i] | arr2[i];
+            StringBuilder row = new StringBuilder();
+            for (int j = n - 1; j >= 0; j--) {
+                if ((combined & (1 << j)) != 0) {
+                    row.append('#');
+                } else {
+                    row.append(' ');
+                }
+            }
+            map[i] = row.toString();
+        }
+        return map;
+    }
 }

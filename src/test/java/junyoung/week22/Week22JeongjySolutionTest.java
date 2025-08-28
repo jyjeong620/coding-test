@@ -51,4 +51,22 @@ class Week22JeongjySolutionTest {
         // then
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("비밀지도")
+    @ParameterizedTest
+    @MethodSource("secretMapProvider")
+    void secretMapTest(int n, int[] arr1, int[] arr2, String[] expected) {
+        // given & when
+        String[] actual = solution.secretMap(n, arr1, arr2);
+
+        // then
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> secretMapProvider() {
+        return Stream.of(
+                Arguments.of(5, new int[]{9, 20, 28, 18, 11}, new int[]{30, 1, 21, 17, 28}, new String[]{"#####", "# # #", "### #", "#  ##", "#####"}),
+                Arguments.of(6, new int[]{46, 33, 33 ,22, 31, 50}, new int[]{27 ,56, 19, 14, 14, 10}, new String[]{"######", "###  #", "##  ##", " #### ", " #####", "### # "})
+        );
+    }
 }
