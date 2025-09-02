@@ -1,7 +1,6 @@
 package junyoung.week23;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -24,11 +23,24 @@ public class Week23JeongjySolution {
 
     private int getColumnIndex(String column) {
         switch (column) {
-            case "code": return 0;
-            case "date": return 1;
-            case "maximum": return 2;
-            case "remain": return 3;
-            default: throw new IllegalArgumentException("Invalid column: " + column);
+            case "code":
+                return 0;
+            case "date":
+                return 1;
+            case "maximum":
+                return 2;
+            case "remain":
+                return 3;
+            default:
+                throw new IllegalArgumentException("Invalid column: " + column);
         }
+    }
+
+    public int plus(int[] absolutes, boolean[] signs) {
+        int sum = 0;
+        for (int i = 0; i < absolutes.length; i++) {
+            sum += signs[i] ? absolutes[i] : -absolutes[i];
+        }
+        return sum;
     }
 }

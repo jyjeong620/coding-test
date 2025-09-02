@@ -37,4 +37,21 @@ class Week23JeongjySolutionTest {
                 )
         );
     }
+
+    @DisplayName("음양 더하기")
+    @ParameterizedTest
+    @MethodSource("plusProvider")
+    void plusTest(int[] absolutes, boolean[] signs, int expect) {
+        // given & when
+        int actual = solution.plus(absolutes, signs);
+
+        // then
+        assertThat(actual).isEqualTo(expect);
+    }
+    private static Stream<Arguments> plusProvider() {
+        return Stream.of(
+                Arguments.of(new int[]{4, 7, 12}, new boolean[]{true, false, true}, 9),
+                Arguments.of(new int[]{1, 2, 3}, new boolean[]{false, false, true}, 0)
+        );
+    }
 }
