@@ -43,4 +43,9 @@ public class Week23JeongjySolution {
         }
         return sum;
     }
+
+    public String coverNumber(String phone_number) {
+        String lastFour = phone_number.substring(phone_number.length() - 4);
+        return "*".repeat(Math.max(0, phone_number.length() - 4)) + lastFour;
+    }
 }

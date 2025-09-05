@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
@@ -48,10 +49,25 @@ class Week23JeongjySolutionTest {
         // then
         assertThat(actual).isEqualTo(expect);
     }
+
     private static Stream<Arguments> plusProvider() {
         return Stream.of(
                 Arguments.of(new int[]{4, 7, 12}, new boolean[]{true, false, true}, 9),
                 Arguments.of(new int[]{1, 2, 3}, new boolean[]{false, false, true}, 0)
         );
+    }
+
+    @DisplayName("핸드폰 번호 가리기")
+    @ParameterizedTest
+    @CsvSource({
+            "01033334444, *******4444",
+            "027778888, *****8888"
+    })
+    void coverNumberTest(String phone_number, String expect) {
+        // given & when
+        String actual = solution.coverNumber(phone_number);
+
+        // then
+        assertThat(actual).isEqualTo(expect);
     }
 }
