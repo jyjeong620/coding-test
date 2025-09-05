@@ -40,4 +40,19 @@ class Week23SolutionTest {
                 Arguments.of(new int[]{70, 80, 50}, 100, 3)
         );
     }
+
+    @DisplayName("영어 끝말잇기")
+    @ParameterizedTest
+    @MethodSource("englishRelayTestCases")
+    void englishRelay(int n, String[] words, int[] expected) {
+        assertThat(solution.englishRelay(n, words)).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> englishRelayTestCases() {
+        return Stream.of(
+                Arguments.of(3, new String[]{"tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"}, new int[]{3, 3}),
+                Arguments.of(5, new String[]{"hello", "observe", "effect", "take", "either", "recognize", "encourage", "ensure", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"}, new int[]{0, 0}),
+                Arguments.of(2, new String[]{"hello", "one", "even", "never", "now", "world", "draw"}, new int[]{1, 3})
+        );
+    }
 }
