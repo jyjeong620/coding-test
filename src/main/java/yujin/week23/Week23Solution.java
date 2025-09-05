@@ -1,6 +1,7 @@
 package yujin.week23;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -27,5 +28,22 @@ public class Week23Solution {
         }
 
         return types;
+    }
+
+    public int savePeople(int[] people, int limit) {
+        Arrays.sort(people);
+        int leftIndex = 0;
+        int rightIndex = people.length - 1;
+
+        int count = 0;
+        while (leftIndex <= rightIndex) {
+            if (people[leftIndex] + people[rightIndex] <= limit) {
+                leftIndex++;
+            }
+            rightIndex--;
+            count++;
+        }
+
+        return count;
     }
 }

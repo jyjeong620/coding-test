@@ -26,4 +26,18 @@ class Week23SolutionTest {
                 Arguments.of(2, new int[]{1, 1, 1, 1, 2, 2, 2, 3}, 1)
         );
     }
+
+    @DisplayName("구명보트")
+    @ParameterizedTest
+    @MethodSource("savePeopleTestCases")
+    void savePeople(int[] people, int limit, int expected) {
+        assertThat(solution.savePeople(people, limit)).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> savePeopleTestCases() {
+        return Stream.of(
+                Arguments.of(new int[]{70, 50, 80, 50}, 100, 3),
+                Arguments.of(new int[]{70, 80, 50}, 100, 3)
+        );
+    }
 }
