@@ -19,4 +19,16 @@ class Week24SolutionTest {
         Week24Solution solution = new Week24Solution();
         assertThat(solution.correctBrackets(s)).isEqualTo(expected);
     }
+
+    @DisplayName("짝지어 제거하기")
+    @ParameterizedTest
+    @CsvSource({
+            "'baabaa', 1",
+            "'cdcd', 0"
+    })
+    void removePair(String s, int expected) {
+        Week24Solution solution = new Week24Solution();
+        assertThat(solution.removePair(s)).isEqualTo(expected);
+    }
+
 }
